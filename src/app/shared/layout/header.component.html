@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-sm navbar-light">
+  <!-- <div class="container-fluid"> -->
+  <a class="navbar-brand" routerLink="/">
+    <img src="../../../assets/LOGOS PRODUBANCO.svg" style="width: 14rem" />
+  </a>
+
+  <!-- Show this for logged out users -->
+  <ul class="navbar-nav mr-auto" *appShowAuthed="false">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home" routerLinkActive="active">
+        <i class="ion-home"></i> Inicio
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/login" routerLinkActive="active">
+        <i class="ion-log-in"></i> Autenticarse
+      </a>
+    </li>
+  </ul>
+
+  <!-- Show this for logged in users -->
+  <ul  class="navbar-nav mr-auto" *appShowAuthed="true">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home" routerLinkActive="active">
+        <i class="ion-home"></i> Inicio
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/profile', currentUser.login]" routerLinkActive="active">
+        {{ currentUser.login }}
+      </a>
+    </li>
+  </ul>
+
+  <!-- Show this for logged out users -->
+  <!-- <ul *appShowAuthed="false" class="nav navbar-nav pull-xs-right">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">
+          <i class="ion-home"></i> Inicio
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">
+          <i class="ion-log-in"></i> Autenticarse
+        </a>
+      </li>
+    </ul> -->
+
+  <!-- Show this for logged in users -->
+  <!-- <ul *appShowAuthed="true" class="nav navbar-nav pull-xs-right">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">
+          <i class="ion-home"></i> Inicio
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/draw-editor" routerLinkActive="active">
+          <i class="ion-compose"></i> Nuevo sorteo
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/profile', currentUser.login]" routerLinkActive="active">
+          <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic" />
+          {{ currentUser.login }}
+        </a>
+      </li>
+    </ul> -->
+  <!-- </div> -->
+</nav>

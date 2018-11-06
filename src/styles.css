@@ -1,0 +1,177 @@
+html {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 100px
+}
+
+body {
+    font-family: source sans pro, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #373a3c;
+    background-color: #fff;
+    margin: 0
+}
+
+footer {
+    background: #f3f3f3;
+    margin-top: 3rem;
+    padding: 1rem 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer .attribution {
+    vertical-align: middle;
+    margin-left: 10px;
+    font-size: .8rem;
+    /* color: #bbb; */
+    color: rgb(0, 105, 55);
+    font-weight: 300
+}
+
+a {
+    color: rgb(0, 105, 55);
+    text-decoration: none
+}
+
+a:focus,
+a:hover {
+    color: rgb(118, 188, 33);
+    text-decoration: underline
+}
+
+a:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
+a:not([href]) {
+    color: inherit;
+    text-decoration: none
+}
+
+a:not([href]):focus,
+a:not([href]):hover {
+    color: inherit;
+    text-decoration: none
+}
+
+a:not([href]):focus {
+    outline: none
+}
+
+.home-page .banner {
+    background: rgb(0, 105, 55);
+    box-shadow: inset 0 8px 8px -8px rgba(0, 0, 0, .3), inset 0 -8px 8px -8px rgba(0, 0, 0, .3)
+}
+
+.home-page .banner p {
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300 !important;
+    margin-bottom: 0
+}
+
+.home-page .banner h1 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    font-weight: 600 !important;
+    text-align: center;
+    font-size: 3rem;
+    padding-bottom: .5rem
+}
+
+.logo-font {
+    vertical-align: middle;
+    font-family: titillium web, sans-serif
+}
+
+.banner {
+    color: #fff;
+    background: rgb(0, 105, 55);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem
+}
+
+.banner h1 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    margin-bottom: 0
+}
+
+.container .page {
+    margin-top: 1.5rem
+}
+
+.preview-link {
+    color: inherit !important
+}
+
+.preview-link:hover {
+    text-decoration: inherit !important
+}
+
+.article-page .banner h1 {
+    font-size: 3rem;
+    font-weight: 600
+}
+
+.article-page .banner .btn {
+    opacity: .8
+}
+
+.article-page .banner .btn:hover {
+    transition: .1s all;
+    opacity: 1
+}
+
+.article-page .banner .article-meta {
+    margin: 2rem 0 0
+}
+
+.article-page .banner .article-meta .author {
+    color: #fff
+}
+
+.article-page .article-actions {
+    text-align: center;
+    margin: 1.5rem 0 3rem
+}
+
+.article-page .article-actions .article-meta .info {
+    text-align: left
+}
+
+.article-meta {
+    display: block;
+    position: relative;
+    font-weight: 300
+}
+
+.article-meta img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+    width: 32px;
+    border-radius: 30px
+}
+
+.article-meta .info {
+    margin: 0 1.5rem 0 .3rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1rem
+}
+
+.article-meta .info .author {
+    display: block;
+    font-weight: 500 !important
+}
+
+.article-meta .info .date {
+    color: #bbb;
+    font-size: .8rem;
+    display: block
+}

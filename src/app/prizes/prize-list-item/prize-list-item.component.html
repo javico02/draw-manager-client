@@ -1,0 +1,44 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <fa-icon [icon]="award"></fa-icon> {{ prize.name }}
+    -
+    <li class="badge badge-pill" [ngClass]="{'badge-danger': !prize.delivered, 'badge-success': !!prize.delivered}">
+      {{ !!prize.delivered ? 'ENTREGADO' : 'NO ENTREGADO' }}
+    </li>
+  </div>
+
+  <div class="card-body" *ngIf="!!prize.delivered; else isNotDelivered">
+    <h5 class="card-title">Ganador(a):</h5>
+    <p class="card-text">
+      <strong>Cédula: </strong> {{ getWinnerSelectionStep().entrantCode }}
+    </p>
+    <p class="card-text">
+      <strong>Nombre: </strong> {{ getWinnerSelectionStep().entrantName }}
+    </p>
+    <p class="card-text">
+      <strong>Oficina: </strong> {{ getWinnerSelectionStep().entrantOffice }}
+    </p>
+    <p class="card-text">
+      <strong>Ciudad: </strong> {{ getWinnerSelectionStep().entrantCity }}
+    </p>
+  </div>
+  <ng-template #isNotDelivered>
+    <div class="card-body">
+      <p class="card-text">
+        Ganador no definido
+      </p>
+    </div>
+  </ng-template>
+
+  <div *ngIf="!drawInfo.isClosed">
+    <div class="card-footer" *appShowAuthed="true">
+      <button class="btn btn-sm btn-outline-success first-button card-link" (click)="execute()" [disabled]="drawInfo.entriesQty <= 0">
+        <fa-icon [icon]="check"></fa-icon> {{ !!prize.delivered ? 'Volver a sortear premio' : 'Sortear premio' }}
+      </button>
+
+      <button class="btn btn-sm btn-outline-danger card-link" (click)="delete()" *ngIf="!prize.delivered">
+        <fa-icon [icon]="trash"></fa-icon> Eliminar premio
+      </button>
+    </div>
+  </div>
+</div>

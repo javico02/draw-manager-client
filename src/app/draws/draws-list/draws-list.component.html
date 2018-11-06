@@ -1,0 +1,19 @@
+<div class="app-article-preview" [hidden]="!loading">
+  Cargando sorteos...
+</div>
+
+<div class="app-article-preview" [hidden]="loading || draws.length">
+  No existen sorteos... aun.
+</div>
+
+<draw-list-item *ngFor="let draw of draws" [draw]="draw">
+</draw-list-item>
+
+<nav [hidden]="loading || totalPages.length <= 1">
+  <ul class="pagination">
+    <li class="page-item" [ngClass]="{'active': pageNumber === currentPage}" *ngFor="let pageNumber of totalPages"
+      (click)="setPageTo(pageNumber)">
+      <a class="page-link">{{ pageNumber }}</a>
+    </li>
+  </ul>
+</nav>

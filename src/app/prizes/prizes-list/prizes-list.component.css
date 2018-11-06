@@ -1,0 +1,26 @@
+.modal-content {
+    background: transparent;
+    border: none;
+}
+
+.green-backdrop {
+    background-color: rgb(0, 105, 55);
+}
+
+.modal-backdrop.show {
+    opacity: 0.98 !important;
+}
+
+#animation1 h3,
+#animation2 h3,
+#animation3 h3 {
+    /* color: rgb(0, 105, 55); */
+    color: rgb(118, 188, 33);
+    margin-top: -60px;
+    text-align: center;
+}
+
+#animation3 h1 {
+    color: rgb(118, 188, 33);
+    text-align: center;    
+}

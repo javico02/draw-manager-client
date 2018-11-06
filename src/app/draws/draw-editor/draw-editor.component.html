@@ -1,0 +1,33 @@
+<div class="editor-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+
+        <app-list-errors [errors]="errors"></app-list-errors>
+
+        <form [formGroup]="drawForm">
+          <fieldset [disabled]="isSubmitting">
+            <fieldset class="form-group">
+              <input class="form-control form-control-lg" formControlName="name" type="text" placeholder="Nombre del sorteo"
+                required />
+            </fieldset>
+
+            <fieldset class="form-group">
+              <textarea class="form-control" formControlName="description" rows="8" placeholder="Describa en que consiste el sorteo"
+                required>
+              </textarea>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <input type="date" class="form-control" formControlName="programmedFor" required />
+            </fieldset>
+
+            <button class="btn btn-lg pull-xs-right btn-primary" [disabled]="!drawForm.valid" type="submit" (click)="submitForm()">
+              Publicar sorteo
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

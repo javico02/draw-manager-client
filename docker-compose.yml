@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  angular-cli-docker-ootb:
+    image: angular-cli-docker-ootb
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 80:443
+    ## set your startup file here
+    command: [nginx-debug, '-g', 'daemon off;']
