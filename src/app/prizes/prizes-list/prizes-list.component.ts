@@ -18,13 +18,6 @@ export class PrizesListComponent implements OnInit {
     private prizeSelectionSteps: PrizeSelectionStepsService
   ) {
 
-    // this.lottieConfig0 = {
-    //   path: 'assets/success.json',
-    //   renderer: 'canvas',
-    //   autoplay: true,
-    //   loop: true
-    // };
-
     this.lottieConfig1 = {
       path: 'assets/confetti.json',
       renderer: 'canvas',
@@ -43,21 +36,21 @@ export class PrizesListComponent implements OnInit {
 
   // Properties
   @Input() drawId: number;
-  @Input() drawInfo: { entriesQty: number, isClosed: boolean };
+  @Input() drawInfo: { drawName: string, prizesQty: number, entriesQty: number, isClosed: boolean };
   @Output() drawReload = new EventEmitter<boolean>();
 
   // Html
-  @ViewChild('content') modal: ElementRef;
+  @ViewChild('contentAnim') modal: ElementRef;
 
   // Fields
-  prizes$: Observable<Prize[]>;
   errors: {};
+  sortingPrize: Prize;
   lastWinner: PrizeSelectionStep;
+  prizes$: Observable<Prize[]>;
+  anim: any;
   animationIndex: number;
-  lottieConfig0: Object;
   lottieConfig1: Object;
   lottieConfig2: Object;
-  anim: any;
 
   // Methods
   ngOnInit() {
@@ -74,6 +67,7 @@ export class PrizesListComponent implements OnInit {
 
   onSelectWinner(prize: Prize) {
     this.errors = {};
+    this.sortingPrize = prize;
     this.lastWinner = {} as PrizeSelectionStep;
     this.showModal();
 
@@ -114,21 +108,28 @@ export class PrizesListComponent implements OnInit {
 
   showModal() {
     this.animationIndex = 1;
+    const ms = this.drawInfo.prizesQty === 1
+      ? 6000
+      : 2000;
 
     // Opening modal
-    this.modalService.open(this.modal, { centered: true, backdropClass: 'green-backdrop' });
-
-    // setTimeout(() => {
-    //   this.animationIndex = 1;
-    //   console.log(this.animationIndex);
-    // },
-    //   4000);
+    this.modalService
+      .open(this.modal, { centered: true, backdropClass: 'green-backdrop' })
+      .result
+      .then(_ => {
+        this.sortingPrize = {} as Prize;
+      },
+        _ => {
+          this.sortingPrize = {} as Prize;
+        })
+      .catch(_ => {
+        this.sortingPrize = {} as Prize;
+      });
 
     setTimeout(() => {
       this.animationIndex = 2;
-      console.log(this.animationIndex);
     },
-      6000);
+      ms);
   }
 
   handleAnimation(anim: any) {

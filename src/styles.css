@@ -101,10 +101,6 @@ a:not([href]):focus {
     margin-bottom: 0
 }
 
-.container .page {
-    margin-top: 1.5rem
-}
-
 .preview-link {
     color: inherit !important
 }
@@ -113,7 +109,7 @@ a:not([href]):focus {
     text-decoration: inherit !important
 }
 
-.article-page .banner h1 {
+/* .article-page .banner h1 {
     font-size: 3rem;
     font-weight: 600
 }
@@ -174,4 +170,4 @@ a:not([href]):focus {
     color: #bbb;
     font-size: .8rem;
     display: block
-}
+} */

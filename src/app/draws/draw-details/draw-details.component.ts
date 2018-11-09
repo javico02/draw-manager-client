@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { faCalendarAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { DrawsService, Draw, UserService, Prize, PrizesService } from '../../core';
 
@@ -19,9 +18,7 @@ export class DrawDetailsComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private drawsService: DrawsService,
     private prizesService: PrizesService,
-  ) {
-    this.calendar = faCalendarAlt;
-  }
+  ) { }
 
   // Fields
   draw: Draw;
@@ -31,9 +28,6 @@ export class DrawDetailsComponent implements OnInit, OnDestroy {
   reloadDrawSubs$$: Subscription;
   prizes$: Observable<Prize[]>;
   canModify$: Observable<boolean>;
-
-  // Icons
-  calendar: IconDefinition;
 
   ngOnInit() {
     // Retreiving the prefetched draw & your prizes

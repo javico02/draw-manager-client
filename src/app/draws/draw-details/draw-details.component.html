@@ -10,30 +10,24 @@
       <div class="article-meta">
         <div class="info">
           <span class="date" *ngIf="!!draw.executedOn;else notExecuted">
-              <fa-icon [icon]="calendar"></fa-icon> {{ draw.executedOn | date: 'longDate' }}
+            <i class="fa fa-calendar-alt"></i> {{ draw.executedOn | date: 'longDate' }}
           </span>
           <ng-template #notExecuted>
             <span class="date">
-                <fa-icon [icon]="calendar"></fa-icon> {{ draw.programmedFor | date: 'longDate' }}
+              <i class="fa fa-calendar-alt"></i> {{ draw.programmedFor | date: 'longDate' }}
             </span>
           </ng-template>
         </div>
 
         <span *appShowAuthed="true">
-          <!-- <button *ngIf="draw.prizesQty > 0 && !draw.isCompleted" class="btn btn-sm btn-outline-success first-button" (click)="executeDraw()">
-            <i class="ion-android-done"></i> Sortear premio
-          </button> -->
-
-          <!-- <button *ngIf="draw.prizesQty > 0 && !draw.isCompleted" class="btn btn-sm btn-outline-success first-button" (click)="executeDraw()">
-              <i class="ion-android-done-all"></i> Sortear todo
-          </button> -->
-          <button *ngIf="!draw.executedOn && draw.isCompleted" class="btn btn-sm btn-outline-primary" (click)="closeDraw()">
-              <i class="ion-android-done-all"></i> Cerrar sorteo
-            </button>
-
-          <button *ngIf="!draw.isCompleted" class="btn btn-sm btn-outline-primary" [ngClass]="{ disabled: isDeleting }" (click)="deleteDraw()">
-            <i class="ion-trash-a"></i> Eliminar sorteo
+          <button *ngIf="!draw.executedOn && draw.isCompleted" class="btn btn-sm btn-outline-light" (click)="closeDraw()">
+            <i class="fa fa-check-double"></i> Cerrar sorteo
           </button>
+
+          <!-- <button *ngIf="!draw.isCompleted" class="btn btn-sm btn-outline-light" [ngClass]="{ disabled: isDeleting }"
+            (click)="deleteDraw()">
+            <i class="fa fa-trash-alt"></i> Eliminar sorteo
+          </button> -->
         </span>
       </div>
     </div>
@@ -52,7 +46,8 @@
 
     <div class="row article-content">
       <div class="col-md-12">
-        <prizes-list [drawId]="draw.id" [drawInfo]="{ entriesQty: draw.entriesQty, isClosed: !!draw.executedOn}" (drawReload)="onDrawReload()"></prizes-list>
+        <prizes-list [drawId]="draw.id" [drawInfo]="{ drawName: draw.name, prizesQty: draw.prizesQty, entriesQty: draw.entriesQty, isClosed: !!draw.executedOn}"
+          (drawReload)="onDrawReload()"></prizes-list>
       </div>
     </div>
   </div>

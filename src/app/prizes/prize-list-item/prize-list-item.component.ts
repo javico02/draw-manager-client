@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { faAward, faCheck, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Prize, PrizeSelectionStep, PrizeSelectionStepType } from '../../core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'prize-list-item',
@@ -9,22 +9,13 @@ import { Prize, PrizeSelectionStep, PrizeSelectionStepType } from '../../core';
 })
 export class PrizeListItemComponent implements OnInit {
 
-  constructor() {
-    this.award = faAward;
-    this.check = faCheck;
-    this.trash = faTrash;
-  }
+  constructor(private modalService: NgbModal) { }
 
   // Properties
   @Input() prize: Prize;
-  @Input() drawInfo: { entriesQty: number, isClosed: boolean };
+  @Input() drawInfo: { drawName: string, prizesQty: number, entriesQty: number, isClosed: boolean };
   @Output() deletePrize = new EventEmitter<boolean>();
   @Output() selectWinner = new EventEmitter<boolean>();
-
-  // Icons
-  award: IconDefinition;
-  check: IconDefinition;
-  trash: IconDefinition;
 
   // Methods
   ngOnInit() {
@@ -40,12 +31,20 @@ export class PrizeListItemComponent implements OnInit {
     return winner;
   }
 
-  execute() {
-    this.selectWinner.emit(true);
+  execute(content: any) {
+    if (!!this.prize.delivered) {
+      this.modalService.open(content, { backdropClass: 'green-backdrop' });
+    } else {
+      this.select();
+    }
   }
 
   delete() {
     this.deletePrize.emit(true);
+  }
+
+  select() {
+    this.selectWinner.emit(true);
   }
 
 }

@@ -2,12 +2,6 @@
   <div class="card-header">
     Autenticarse <a [routerLink]="['/login']">aquí</a> para administrar premios en este sorteo.
   </div>
-
-  <!-- <div class="card-header" *appShowAuthed="true">
-    <a [routerLink]="['/login']">
-      <i class="ion-compose"></i> Nuevo premio
-    </a>
-  </div> -->
 </div>
 
 <app-list-errors [errors]="errors"></app-list-errors>
@@ -17,25 +11,17 @@
     No existen premios asociados para este sorteo.
   </div>
   <ng-template #hasPrizes>
-    <!-- <div class="card-group"> -->
     <prize-list-item *ngFor="let prize of prizes" [prize]="prize" [drawInfo]="drawInfo" (deletePrize)="onDeletePrize(prize)"
       (selectWinner)="onSelectWinner(prize)">
     </prize-list-item>
-    <!-- </div> -->
   </ng-template>
 </div>
 <ng-template #isLoading>
   Cargando premios...
 </ng-template>
 
-<ng-template #content let-modal>
+<ng-template #contentAnim let-modal>
   <div class="modal-body">
-    <!-- <div id="animation1" *ngIf="animationIndex == 0">
-      <lottie-animation-view [options]="lottieConfig0" [width]="220" [height]="440" (animCreated)="handleAnimation($event)">
-      </lottie-animation-view>
-      <h3>Iniciando sorteo ...</h3>
-    </div> -->
-
     <div id="animation2" *ngIf="animationIndex == 1">
       <lottie-animation-view [options]="lottieConfig1" [width]="300" [height]="600" (animCreated)="handleAnimation($event)">
       </lottie-animation-view>
@@ -45,7 +31,9 @@
     <div id="animation3" *ngIf="animationIndex == 2">
       <div class="card">
         <div class="card-header">
-          Featured
+          <h5>
+            {{ drawInfo.drawName }} - {{ sortingPrize.name }}
+          </h5>
         </div>
 
         <lottie-animation-view class="card-img-top" [options]="lottieConfig2" (animCreated)="handleAnimation($event)">
@@ -56,20 +44,20 @@
           <p class="card-text">
             <strong>Nombre: </strong> {{ lastWinner.entrantName }}
           </p>
-          <!-- <p class="card-text">
-            <strong>Cédula: </strong> {{ lastWinner.entrantCode }}
-          </p> -->
           <p class="card-text">
-            <strong>Oficina: </strong> {{ lastWinner.entrantOffice }}
+            <strong>Unidad: </strong> {{ lastWinner.entrantUnit }}
           </p>
           <p class="card-text">
             <strong>Ciudad: </strong> {{ lastWinner.entrantCity }}
+          </p>
+          <p class="card-text">
+            <strong>Empresa: </strong> {{ lastWinner.entrantOffice }}
           </p>
         </div>
 
         <div class="card-body">
           <button class="btn btn-sm btn-outline-success card-link" (click)="modal.close('Close click')">
-            Aceptar
+            <i class="fa fa-check"></i> Aceptar
           </button>
         </div>
       </div>
@@ -77,5 +65,3 @@
     </div>
   </div>
 </ng-template>
-
-<!-- <button (click)="showModal(content)">Show Modal</button> -->

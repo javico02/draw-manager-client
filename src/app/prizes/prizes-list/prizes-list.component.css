@@ -1,4 +1,4 @@
-.modal-content {
+.modal-dialog-centered .modal-content {
     background: transparent;
     border: none;
 }
@@ -11,7 +11,6 @@
     opacity: 0.98 !important;
 }
 
-#animation1 h3,
 #animation2 h3,
 #animation3 h3 {
     /* color: rgb(0, 105, 55); */
@@ -22,5 +21,5 @@
 
 #animation3 h1 {
     color: rgb(118, 188, 33);
-    text-align: center;    
+    text-align: center;
 }

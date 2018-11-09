@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 import { DrawsService, DrawListConfig, Draw } from '../../core';
 
@@ -6,7 +6,8 @@ import { DrawsService, DrawListConfig, Draw } from '../../core';
   selector: 'draws-list',
   providers: [DrawsService],
   templateUrl: './draws-list.component.html',
-  styleUrls: ['./draws-list.component.css']
+  styleUrls: ['./draws-list.component.css'],
+  // encapsulation: ViewEncapsulation.Native
 })
 export class DrawsListComponent {
 

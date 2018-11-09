@@ -1,25 +1,25 @@
 <div class="card mb-3">
   <div class="card-header">
-    <fa-icon [icon]="award"></fa-icon> {{ prize.name }}
+    <i class="fa fa-award"></i> {{ prize.name }}
     -
-    <li class="badge badge-pill" [ngClass]="{'badge-danger': !prize.delivered, 'badge-success': !!prize.delivered}">
+    <span class="badge badge-pill" [ngClass]="{'badge-danger': !prize.delivered, 'badge-success': !!prize.delivered}">
       {{ !!prize.delivered ? 'ENTREGADO' : 'NO ENTREGADO' }}
-    </li>
+    </span>
   </div>
 
   <div class="card-body" *ngIf="!!prize.delivered; else isNotDelivered">
     <h5 class="card-title">Ganador(a):</h5>
     <p class="card-text">
-      <strong>Cédula: </strong> {{ getWinnerSelectionStep().entrantCode }}
-    </p>
-    <p class="card-text">
       <strong>Nombre: </strong> {{ getWinnerSelectionStep().entrantName }}
     </p>
     <p class="card-text">
-      <strong>Oficina: </strong> {{ getWinnerSelectionStep().entrantOffice }}
+      <strong>Unidad: </strong> {{ getWinnerSelectionStep().entrantUnit }}
     </p>
     <p class="card-text">
       <strong>Ciudad: </strong> {{ getWinnerSelectionStep().entrantCity }}
+    </p>
+    <p class="card-text">
+      <strong>Oficina: </strong> {{ getWinnerSelectionStep().entrantOffice }}
     </p>
   </div>
   <ng-template #isNotDelivered>
@@ -32,13 +32,32 @@
 
   <div *ngIf="!drawInfo.isClosed">
     <div class="card-footer" *appShowAuthed="true">
-      <button class="btn btn-sm btn-outline-success first-button card-link" (click)="execute()" [disabled]="drawInfo.entriesQty <= 0">
-        <fa-icon [icon]="check"></fa-icon> {{ !!prize.delivered ? 'Volver a sortear premio' : 'Sortear premio' }}
+      <button class="btn btn-sm btn-outline-success first-button card-link" (click)="execute(content)" [disabled]="drawInfo.entriesQty <= 0">
+        <i class="fa fa-check"></i> {{ !!prize.delivered ? 'Volver a sortear premio' : 'Sortear premio' }}
       </button>
 
       <button class="btn btn-sm btn-outline-danger card-link" (click)="delete()" *ngIf="!prize.delivered">
-        <fa-icon [icon]="trash"></fa-icon> Eliminar premio
+        <i class="fa fa-trash-alt"></i> Eliminar premio
       </button>
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal style="background: #fff">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Volver a soltear premio</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>¿Está seguro de volver a soltear <span class="text-primary">"{{ prize.name }}"</span>?</strong></p>
+    <!-- <p>All information associated to this user profile will be permanently deleted.
+      <span class="text-danger">This operation can not be undone.</span>
+    </p> -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" ngbAutofocus class="btn btn-success" (click)="modal.close();select()">Aceptar</button>
+    <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('cancel click')">Cancelar</button>
+  </div>
+</ng-template>

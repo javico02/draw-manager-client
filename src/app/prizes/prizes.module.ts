@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PrizeResolver } from './prize-resolver.service';
 import { PrizesListComponent } from './prizes-list/prizes-list.component';
@@ -12,7 +11,6 @@ import { LottieAnimationViewModule } from 'ng-lottie';
   imports: [
     CommonModule,
     SharedModule,
-    FontAwesomeModule,
     LottieAnimationViewModule.forRoot(),
   ],
   declarations: [

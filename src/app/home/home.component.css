@@ -1,7 +1,12 @@
-.nav-link {
+/* .nav-link {
   cursor:pointer;
 }
 
 .tag-pill{
   cursor:pointer;
+} */
+
+.pbo-image {
+    border-color: rgb(0, 105, 55);
+    /* width: 50rem; */
 }

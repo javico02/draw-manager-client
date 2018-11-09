@@ -1,20 +1,16 @@
-<div class="article-preview">
-  <!-- <app-article-meta [article]="article">
-    <app-favorite-button [article]="article" (toggle)="onToggleFavorite($event)" class="pull-xs-right">
-      {{article.favoritesCount}}
-    </app-favorite-button>
-  </app-article-meta> -->
-
-  <!-- <a [routerLink]="['/article', article.slug]" class="preview-link"></a> -->
-  <a class="preview-link" [routerLink]="['/draws', draw.id]">
-    <h2>{{ draw.id }} - {{ draw.name }}</h2>
-    <h5># premios: {{ draw.prizesQty }}</h5>
-    <p>{{ draw.description }}</p>
-    <!-- <span>Read more...</span> -->
-    <!-- <ul class="tag-list">
-      <li class="tag-default tag-pill tag-outline" *ngFor="let tag of article.tagList">
-        {{ tag }}
-      </li>
-    </ul> -->
-  </a>
+<div class="frontside">
+  <div class="card">
+    <div class="card-body text-center">
+      <i class="fa fa-4x mb-2" [ngClass]="{'fa-car': draw.groupName.toLowerCase().indexOf('auto') > -1, 'fa-piggy-bank': draw.groupName.toLowerCase().indexOf('cartera') > -1 , 'fa-tv': draw.groupName.toLowerCase().indexOf('tv') > -1, 'fa-gift': draw.groupName.toLowerCase().indexOf('sorpresa') > -1 }"></i>
+      <!-- <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p> -->
+      <h4 class="card-title">{{ draw.name }}</h4>
+      <h6 class="card-subtitle mb-1">
+        <i class="fa fa-award"></i>: {{ draw.prizesQty }}
+      </h6>
+      <p class="card-text text-left">{{ draw.description }}</p>
+      <a class="btn btn-outline-success btn-sm" [routerLink]="['/draws', draw.id]">
+        <i class="fa fa-plus"></i> Detalles
+      </a>
+    </div>
+  </div>
 </div>

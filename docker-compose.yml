@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  angular-cli-docker-ootb:
-    image: angular-cli-docker-ootb
+  draw-manager-client:
+    image: draw-manager-client:prod
     build: .
     environment:
       NODE_ENV: production
