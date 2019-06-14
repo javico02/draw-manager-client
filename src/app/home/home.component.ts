@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   // Fields
   isAuthenticated: boolean;
+  today: number = Date.now();
   drawListConfig: DrawListConfig = {
     type: 'all',
     filters: {}

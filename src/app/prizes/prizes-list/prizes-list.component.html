@@ -41,16 +41,22 @@
 
         <div class="card-body">
           <h5 class="card-title">Ganador(a):</h5>
-          <p class="card-text">
+          <p class="card-text" *ngIf="!!lastWinner.entrantCode">
+            <strong>CI: </strong> {{ lastWinner.entrantCode }}
+          </p>
+          <p class="card-text" *ngIf="!!lastWinner.entrantName">
             <strong>Nombre: </strong> {{ lastWinner.entrantName }}
           </p>
-          <p class="card-text">
+          <p class="card-text" *ngIf="!!lastWinner.drawEntryId">
+            <strong>Participación ganadora: </strong> {{ lastWinner.drawEntryId }}
+          </p>
+          <p class="card-text" *ngIf="!!lastWinner.entrantUnit">
             <strong>Unidad: </strong> {{ lastWinner.entrantUnit }}
           </p>
-          <p class="card-text">
+          <p class="card-text" *ngIf="!!lastWinner.entrantCity">
             <strong>Ciudad: </strong> {{ lastWinner.entrantCity }}
           </p>
-          <p class="card-text">
+          <p class="card-text" *ngIf="!!lastWinner.entrantOffice">
             <strong>Empresa: </strong> {{ lastWinner.entrantOffice }}
           </p>
         </div>

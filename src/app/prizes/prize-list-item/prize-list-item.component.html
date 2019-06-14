@@ -2,24 +2,36 @@
   <div class="card-header">
     <i class="fa fa-award"></i> {{ prize.name }}
     -
-    <span class="badge badge-pill" [ngClass]="{'badge-danger': !prize.delivered, 'badge-success': !!prize.delivered}">
-      {{ !!prize.delivered ? 'ENTREGADO' : 'NO ENTREGADO' }}
+    <span
+      class="badge badge-pill"
+      [ngClass]="{
+        'badge-danger': !prize.delivered,
+        'badge-success': !!prize.delivered
+      }"
+    >
+      {{ !!prize.delivered ? "ENTREGADO" : "NO ENTREGADO" }}
     </span>
   </div>
 
-  <div class="card-body" *ngIf="!!prize.delivered; else isNotDelivered">
+  <div class="card-body" *ngIf="getWinnerSelectionStep(); let winner; else isNotDelivered">
     <h5 class="card-title">Ganador(a):</h5>
-    <p class="card-text">
-      <strong>Nombre: </strong> {{ getWinnerSelectionStep().entrantName }}
+    <p class="card-text" *ngIf="!!winner.entrantCode">
+      <strong>CI: </strong> {{ winner.entrantCode }}
     </p>
-    <p class="card-text">
-      <strong>Unidad: </strong> {{ getWinnerSelectionStep().entrantUnit }}
+    <p class="card-text" *ngIf="!!winner.entrantName">
+      <strong>Nombre: </strong> {{ winner.entrantName }}
     </p>
-    <p class="card-text">
-      <strong>Ciudad: </strong> {{ getWinnerSelectionStep().entrantCity }}
+    <p class="card-text" *ngIf="!!winner.drawEntryId">
+      <strong>Participación ganadora: </strong> {{ winner.drawEntryId }}
     </p>
-    <p class="card-text">
-      <strong>Oficina: </strong> {{ getWinnerSelectionStep().entrantOffice }}
+    <p class="card-text" *ngIf="!!winner.entrantUnit">
+      <strong>Unidad: </strong> {{ winner.entrantUnit }}
+    </p>
+    <p class="card-text" *ngIf="!!winner.entrantCity">
+      <strong>Ciudad: </strong> {{ winner.entrantCity }}
+    </p>
+    <p class="card-text" *ngIf="!!entrantOffice">
+      <strong>Oficina: </strong> {{ winner.entrantOffice }}
     </p>
   </div>
   <ng-template #isNotDelivered>
@@ -32,11 +44,20 @@
 
   <div *ngIf="!drawInfo.isClosed">
     <div class="card-footer" *appShowAuthed="true">
-      <button class="btn btn-sm btn-outline-success first-button card-link" (click)="execute(content)" [disabled]="drawInfo.entriesQty <= 0">
-        <i class="fa fa-check"></i> {{ !!prize.delivered ? 'Volver a sortear premio' : 'Sortear premio' }}
+      <button
+        class="btn btn-sm btn-outline-success first-button card-link"
+        (click)="execute(content)"
+        [disabled]="drawInfo.entriesQty <= 0"
+      >
+        <i class="fa fa-check"></i>
+        {{ !!prize.delivered ? "Volver a sortear premio" : "Sortear premio" }}
       </button>
 
-      <button class="btn btn-sm btn-outline-danger card-link" (click)="delete()" *ngIf="!prize.delivered">
+      <button
+        class="btn btn-sm btn-outline-danger card-link"
+        (click)="delete()"
+        *ngIf="!prize.delivered"
+      >
         <i class="fa fa-trash-alt"></i> Eliminar premio
       </button>
     </div>
@@ -46,18 +67,39 @@
 <ng-template #content let-modal style="background: #fff">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-title">Volver a soltear premio</h4>
-    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close button"
+      aria-describedby="modal-title"
+      (click)="modal.dismiss('Cross click')"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <p><strong>¿Está seguro de volver a soltear <span class="text-primary">"{{ prize.name }}"</span>?</strong></p>
-    <!-- <p>All information associated to this user profile will be permanently deleted.
-      <span class="text-danger">This operation can not be undone.</span>
-    </p> -->
+    <p>
+      <strong
+        >¿Está seguro de volver a soltear
+        <span class="text-primary">"{{ prize.name }}"</span>?</strong
+      >
+    </p>
   </div>
   <div class="modal-footer">
-    <button type="button" ngbAutofocus class="btn btn-success" (click)="modal.close();select()">Aceptar</button>
-    <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('cancel click')">Cancelar</button>
+    <button
+      type="button"
+      ngbAutofocus
+      class="btn btn-success"
+      (click)="modal.close(); select()"
+    >
+      Aceptar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="modal.dismiss('cancel click')"
+    >
+      Cancelar
+    </button>
   </div>
 </ng-template>
