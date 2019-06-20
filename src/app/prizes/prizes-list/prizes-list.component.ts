@@ -126,10 +126,10 @@ export class PrizesListComponent implements OnInit {
         this.sortingPrize = {} as Prize;
       });
 
-    setTimeout(() => {
-      this.animationIndex = 2;
-    },
-      ms);
+    // setTimeout(() => {
+    //   this.animationIndex = 2;
+    // },
+    //   ms);
   }
 
   handleAnimation(anim: any) {

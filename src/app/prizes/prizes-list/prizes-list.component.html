@@ -22,13 +22,13 @@
 
 <ng-template #contentAnim let-modal>
   <div class="modal-body">
-    <div id="animation2" *ngIf="animationIndex == 1">
+    <div id="animation2" *ngIf="!lastWinner.entrantCode">
       <lottie-animation-view [options]="lottieConfig1" [width]="300" [height]="600" (animCreated)="handleAnimation($event)">
       </lottie-animation-view>
       <h3>Iniciando sorteo ...</h3>
     </div>
 
-    <div id="animation3" *ngIf="animationIndex == 2">
+    <div id="animation3" *ngIf="!!lastWinner.entrantCode">
       <div class="card">
         <div class="card-header">
           <h5>
