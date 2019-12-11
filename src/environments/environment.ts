@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:9999'
+  api_url: 'http://localhost:9999',
+  animation_time: 5000,
 };

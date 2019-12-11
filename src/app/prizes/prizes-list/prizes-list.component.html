@@ -22,13 +22,13 @@
 
 <ng-template #contentAnim let-modal>
   <div class="modal-body">
-    <div id="animation2" *ngIf="!lastWinner.entrantCode">
+    <div id="animation2" *ngIf="showAnimation(2)">
       <lottie-animation-view [options]="lottieConfig1" [width]="300" [height]="600" (animCreated)="handleAnimation($event)">
       </lottie-animation-view>
       <h3>Iniciando sorteo ...</h3>
     </div>
 
-    <div id="animation3" *ngIf="!!lastWinner.entrantCode">
+    <div id="animation3" *ngIf="showAnimation(3)">
       <div class="card">
         <div class="card-header">
           <h5>
@@ -47,17 +47,20 @@
           <p class="card-text" *ngIf="!!lastWinner.entrantName">
             <strong>Nombre: </strong> {{ lastWinner.entrantName }}
           </p>
-          <p class="card-text" *ngIf="!!lastWinner.drawEntryId">
+          <!-- <p class="card-text" *ngIf="!!lastWinner.drawEntryId">
             <strong>Participación ganadora: </strong> {{ lastWinner.drawEntryId }}
-          </p>
-          <p class="card-text" *ngIf="!!lastWinner.entrantUnit">
+          </p> -->
+          <!-- <p class="card-text" *ngIf="!!lastWinner.entrantUnit">
             <strong>Unidad: </strong> {{ lastWinner.entrantUnit }}
+          </p> -->
+          <p class="card-text" *ngIf="!!lastWinner.entrantSubDepartment">
+            <strong>SubDepartamento: </strong> {{ lastWinner.entrantSubDepartment }}
           </p>
           <p class="card-text" *ngIf="!!lastWinner.entrantCity">
             <strong>Ciudad: </strong> {{ lastWinner.entrantCity }}
           </p>
           <p class="card-text" *ngIf="!!lastWinner.entrantOffice">
-            <strong>Empresa: </strong> {{ lastWinner.entrantOffice }}
+            <strong>Oficina: </strong> {{ lastWinner.entrantOffice }}
           </p>
         </div>
 

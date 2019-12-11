@@ -21,16 +21,19 @@
     <p class="card-text" *ngIf="!!winner.entrantName">
       <strong>Nombre: </strong> {{ winner.entrantName }}
     </p>
-    <p class="card-text" *ngIf="!!winner.drawEntryId">
+    <!-- <p class="card-text" *ngIf="!!winner.drawEntryId">
       <strong>Participación ganadora: </strong> {{ winner.drawEntryId }}
     </p>
     <p class="card-text" *ngIf="!!winner.entrantUnit">
       <strong>Unidad: </strong> {{ winner.entrantUnit }}
+    </p> -->
+    <p class="card-text" *ngIf="!!winner.entrantSubDepartment">
+      <strong>SubDepartamento: </strong> {{ winner.entrantSubDepartment }}
     </p>
     <p class="card-text" *ngIf="!!winner.entrantCity">
       <strong>Ciudad: </strong> {{ winner.entrantCity }}
     </p>
-    <p class="card-text" *ngIf="!!entrantOffice">
+    <p class="card-text" *ngIf="!!winner.entrantOffice">
       <strong>Oficina: </strong> {{ winner.entrantOffice }}
     </p>
   </div>

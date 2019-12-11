@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { PrizesService, Prize, PrizeSelectionStepsService, PrizeSelectionStep } from '../../core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'prizes-list',
@@ -49,12 +50,16 @@ export class PrizesListComponent implements OnInit {
   prizes$: Observable<Prize[]>;
   anim: any;
   animationIndex: number;
+  animationTime: number;
+  useAnimationTime: boolean;
   lottieConfig1: Object;
   lottieConfig2: Object;
 
   // Methods
   ngOnInit() {
     this.animationIndex = 1;
+    this.animationTime = environment.animation_time;
+    this.useAnimationTime = environment.animation_time > 0;
 
     this.getAllPrizes();
   }
@@ -108,9 +113,6 @@ export class PrizesListComponent implements OnInit {
 
   showModal() {
     this.animationIndex = 1;
-    const ms = this.drawInfo.prizesQty === 1
-      ? 6000
-      : 2000;
 
     // Opening modal
     this.modalService
@@ -126,10 +128,29 @@ export class PrizesListComponent implements OnInit {
         this.sortingPrize = {} as Prize;
       });
 
-    // setTimeout(() => {
-    //   this.animationIndex = 2;
-    // },
-    //   ms);
+    // Si se usa animacion por tiempo (Configuracion)
+    if (this.useAnimationTime) {
+      setTimeout(() => {
+        this.animationIndex = 2;
+      },
+        this.animationTime);
+    }
+  }
+
+  showAnimation(animationNumber: number) {
+    if (animationNumber === 2) {
+      return this.useAnimationTime
+        ? this.animationIndex === 1
+        : !this.lastWinner.entrantCode;
+    }
+
+    if (animationNumber === 3) {
+      return this.useAnimationTime
+        ? this.animationIndex === 2
+        : !!this.lastWinner.entrantCode;
+    }
+
+    return false;
   }
 
   handleAnimation(anim: any) {
